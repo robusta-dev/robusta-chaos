@@ -29,4 +29,4 @@ robusta playbooks trigger kill_node name=<node-name>
 
 All the wiring and annoying parts are handled by Robusta. The `kill_node` action contains logic but no boilerplate wiring.
 
-[See the Robusta docs on manual triggers to understand how this works.to understand how this works.74](https://docs.robusta.dev/master/getting-started/manual-triggers.html)
+[See the Robusta docs on manual triggers to understand how this works.to understand how this works.](https://docs.robusta.dev/master/getting-started/manual-triggers.html)
