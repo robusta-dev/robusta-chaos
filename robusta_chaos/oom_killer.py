@@ -1,6 +1,6 @@
 from robusta.api import *
 import time
-
+from pydantic import BaseModel
 
 class OOMKillParams(BaseModel):
     sleep_time_before_oom: float = 120
