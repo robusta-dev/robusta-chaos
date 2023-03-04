@@ -30,3 +30,20 @@ robusta playbooks trigger kill_node name=<node-name>
 All the wiring and annoying parts are handled by Robusta. The `kill_node` action contains logic but no boilerplate wiring.
 
 [See the Robusta docs on manual triggers to understand how this works.to understand how this works.](https://docs.robusta.dev/master/getting-started/manual-triggers.html)
+
+# Examples
+
+1. Scale a deployment up and down
+```yaml
+customPlaybooks:
+- triggers:
+  - on_schedule:
+      fixed_delay_repeat:
+        repeat: -1
+        seconds_delay: 60
+  actions:
+  - scale_deployment:
+      name: nginx-deployment
+      namespace: default
+      replicas: 300
+```

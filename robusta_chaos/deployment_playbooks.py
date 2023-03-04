@@ -41,3 +41,22 @@ def restart_deployment_pods(alert: PrometheusKubernetesAlert, params: Deployment
 
     my_deployment.spec.template.metadata.annotations["kubectl.kubernetes.io/restartedAt"] = now
     my_deployment.update()
+
+class ScaleDeploymentParams(ActionParams):
+    name: str
+    namespace: str
+    replicas: int
+
+@action
+def scale_deployment(event: ExecutionBaseEvent, params: ScaleDeploymentParams):
+    """
+    Scale the specified deployment up and down to the specified number of replicas.
+    Typically used with a scheduled trigger
+    """
+    deployment: RobustaDeployment = RobustaDeployment.readNamespacedDeployment(params.name, params.namespace).obj
+    if deployment.spec.replicas == params.replicas:
+        deployment.spec.replicas = 0
+    else:
+        deployment.spec.replicas = params.replicas
+    deployment.update()
+    logging.info(f"Scaled deployment {params.namespace}/{params.name} to {deployment.spec.replicas}")
