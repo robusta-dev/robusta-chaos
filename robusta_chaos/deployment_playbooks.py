@@ -6,6 +6,7 @@ from robusta.api import (
     ExecutionBaseEvent,
     RobustaDeployment,
     action,
+    ActionParams,
     RateLimitParams,
     PrometheusKubernetesAlert,
     RateLimiter,
